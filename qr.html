@@ -14,7 +14,7 @@
       margin: 0;
     }
     #qrcode {
-      margin-bottom: 20px;
+      /* No margin here, will be on the text below */
     }
   </style>
 </head>
@@ -22,17 +22,21 @@
 
   <h1>QR Code Generator</h1>
   <div id="qrcode"></div>
+  <p id="qrcode-text" style="margin-top: 10px; margin-bottom: 20px; font-family: monospace; word-break: break-all;"></p>
   <button id="download">Download QR Code</button>
 
   <script type="text/javascript">
+    var qrText = "http://qr.optifysolutions.com/";
     var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: "http://qr.optifysolutions.com/",
+      text: qrText,
       width: 256,
       height: 256,
       colorDark : "#000000",
       colorLight : "#ffffff",
       correctLevel : QRCode.CorrectLevel.H
     });
+
+    document.getElementById("qrcode-text").textContent = qrText;
 
     document.getElementById("download").addEventListener("click", function() {
       var qrCanvas = document.querySelector("#qrcode canvas");
