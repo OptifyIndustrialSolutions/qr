@@ -26,7 +26,10 @@
   <button id="download">Download QR Code</button>
 
   <script type="text/javascript">
-    var qrText = "http://qr.optifysolutions.com/";
+    const urlParams = new URLSearchParams(window.location.search);
+    const textFromUrl = urlParams.get('text');
+    var qrText = textFromUrl || "http://qr.optifysolutions.com/";
+
     var qrcode = new QRCode(document.getElementById("qrcode"), {
       text: qrText,
       width: 256,
