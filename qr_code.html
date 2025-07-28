@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #qrcode {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>QR Code Generator</h1>
+  <div id="qrcode"></div>
+  <button id="download">Download QR Code</button>
+
+  <script type="text/javascript">
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: "http://qr.optifysolutions.com/",
+      width: 256,
+      height: 256,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+
+    document.getElementById("download").addEventListener("click", function() {
+      var qrCanvas = document.querySelector("#qrcode canvas");
+      var link = document.createElement('a');
+      link.download = 'qr-code.png';
+      link.href = qrCanvas.toDataURL('image/png');
+      link.click();
+    });
+  </script>
+
+</body>
+</html>
